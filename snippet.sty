@@ -48,19 +48,19 @@
 
 \ProvideDocumentCommand {\newmathsymbol} {m m} {%
     \PackageWarning{snippet}{Use ⧵newmathsnippet instead of ⧵newmathsymbol. The macro is deprecated}%
-    \newsnippet{#1}{#2}%
+    \newmathsnippet{#1}{#2}%
 }
 \ProvideDocumentCommand {\renewmathsymbol} {m m} {%
     \PackageWarning{snippet}{Use ⧵renewmathsnippet instead of ⧵renewmathsymbol. The macro is deprecated}%
-    \newsnippet{#1}{#2}%
+    \renewmathsnippet{#1}{#2}%
 }
 \ProvideDocumentCommand {\providemathsymbol} {m m} {%
     \PackageWarning{snippet}{Use ⧵providemathsnippet instead of ⧵providemathsymbol. The macro is deprecated}%
-    \newsnippet{#1}{#2}%
+    \providemathsnippet{#1}{#2}%
 }
 \ProvideDocumentCommand {\declaremathsymbol} {m m} {%
     \PackageWarning{snippet}{Use ⧵declaremathsnippet instead of ⧵declaremathsymbol. The macro is deprecated}%
-    \newsnippet{#1}{#2}%
+    \declaremathsnippet{#1}{#2}%
 }
 
 \makeatother % Revoke access to internal macros (Name contains an @).
