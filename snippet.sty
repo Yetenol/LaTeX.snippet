@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sty/snippet}[Beatify multiple equations with comments and alignment.]
+
+\RequirePackage{xparse}        % detect empty arguments
+
+\makeatletter % Grant access to internal macros (Name contains an @).
+
+%%%%%%%%%%%%%%%%%%%% USER MACROS %%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand {\newsnippet} {m m} {%
+    \NewDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{#2}}%
+}
+\NewDocumentCommand {\renewsnippet} {m m} {%
+    \RenewDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{#2}}%
+}
+\NewDocumentCommand {\providesnippet} {m m} {%
+    \ProvideDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{#2}}%
+}
+\NewDocumentCommand {\declaresnippet} {m m} {%
+    \DeclareDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{#2}}%
+}
+
+\NewDocumentCommand {\newmathsnippet} {m m} {%
+    \NewDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{\ensuremath{#2}}}%
+}
+\NewDocumentCommand {\renewmathsnippet} {m m} {%
+    \RenewDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{\ensuremath{#2}}}%
+}
+\NewDocumentCommand {\providemathsnippet} {m m} {%
+    \ProvideDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{\ensuremath{#2}}}%
+}
+\NewDocumentCommand {\declaremathsnippet} {m m} {%
+    \DeclareDocumentCommand {#1} {s} {\@RenderSnippet{#1}{##1}{\ensuremath{#2}}}%
+}
+
+\NewDocumentCommand {\@RenderSnippet} {m m m}
+{%
+    \relax\ifmmode%
+        {#3}%
+    \else%
+        \IfBooleanTF {#2}%
+        {#3}%
+        {\PackageError{snippet}{Use #1* (without the space) instead of #1. The star variant is required outside math mode}{}}%
+    \fi%
+}
+
+\makeatother % Revoke access to internal macros (Name contains an @).
