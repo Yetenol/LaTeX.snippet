@@ -40,8 +40,15 @@
     \else%
         \IfBooleanTF {#2}%
         {#3}%
-        {\PackageError{snippet}{Use #1* (without the space) instead of #1. The star variant is required outside math mode}{}}%
+        {\PackageError{snippet}{Use #1* (whitespace optional) instead of #1. The star variant is required outside math mode}{}}%
     \fi%
+}
+
+%%%%%%%%%%%%%%%%%%%% DECRECATED MACROS %%%%%%%%%%%%%%%%%%%%
+
+\ProvideDocumentCommand {\newmathsymbol} {m m} {%
+    \PackageWarning{snippet}{Use ⧵newsnippet instead of ⧵newmathsymbol. The macro is deprecated}%
+    \newsnippet{#1}{#2}%
 }
 
 \makeatother % Revoke access to internal macros (Name contains an @).
