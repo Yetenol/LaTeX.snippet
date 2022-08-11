@@ -1,4 +1,4 @@
-<h1> snippet - A LaTeX package to unify repeated text parts </h1>
+<h1> snippet - A LaTeX package to unify repeated text </h1>
 
 [⌂](README.md) Home
 

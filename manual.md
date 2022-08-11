@@ -3,7 +3,8 @@
 [⌂](README.md) ›
 
 Table of Contents
-- [Create text snippet](#create-text-snippet)
+- [Store a text block as a snippet](#store-a-text-block-as-a-snippet)
+- [Store a mathematical expression as a snippet](#store-a-mathematical-expression-as-a-snippet)
 
 ## Store a text block as a snippet
 Create an immutable text block, called a snippet, to make sure that all its appearances are identical.

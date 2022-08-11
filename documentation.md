@@ -21,6 +21,11 @@ Table of Contents
   - [package Name](#package-name)
 - [Deprecated macros](#deprecated-macros)
 
+# Dependencies
+| Package | Usage                                                       | Used macros           |
+| ------- | ----------------------------------------------------------- | --------------------- |
+| xparse  | create macros with stars, optionals and mandatory arguments | `\NewDocumentCommand` |
+
 # Naming convention
 
 - **User macros**  
