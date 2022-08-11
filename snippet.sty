@@ -1,28 +1,28 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{sty/snippet}[Save text parts or math parts that you want to insert multiple times later.]
+\ProvidesPackage{sty/snippet}[Beatify multiple equations with comments and alignment.]
 
-\RequirePackage{xparse} % normalised interface for optional arguments, stars, mandatory arguments
+\RequirePackage{xparse}        % detect empty arguments
 
 \makeatletter % Grant access to internal macros (Name contains an @).
 
 %%%%%%%%%%%%%%%%%%%% USER MACROS %%%%%%%%%%%%%%%%%%%%
 
-\NewDocumentCommand {\newsnippet} {m m} {%
+\NewDocumentCommand {\newsnippet} {m +m} {%
     \NewDocumentCommand {#1} {s} {%
         \RenderSnippet@spt{#1}{##1}{#2}%
     }%
 }
-\NewDocumentCommand {\renewsnippet} {m m} {%
+\NewDocumentCommand {\renewsnippet} {m +m} {%
     \RenewDocumentCommand {#1} {s} {%
         \RenderSnippet@spt{#1}{##1}{#2}%
     }%
 }
-\NewDocumentCommand {\providesnippet} {m m} {%
+\NewDocumentCommand {\providesnippet} {m +m} {%
     \ProvideDocumentCommand {#1} {s} {%
         \RenderSnippet@spt{#1}{##1}{#2}%
     }%
 }
-\NewDocumentCommand {\declaresnippet} {m m} {%
+\NewDocumentCommand {\declaresnippet} {m +m} {%
     \DeclareDocumentCommand {#1} {s} {%
         \RenderSnippet@spt{#1}{##1}{#2}%
     }%
