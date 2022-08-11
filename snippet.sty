@@ -2,9 +2,9 @@
 \ProvidesPackage{sty/snippet}[Unify repeated text or math expression]
 % see documentation at https://github.com/Yetenol/LaTeX.snippet/
 
-\RequirePackage{xparse}   % create macros with stars, optionals and mandatory arguments
+\RequirePackage{xparse}
 
-\makeatletter % Grant access to internal macros (Name contains an @).
+\makeatletter % Grant access to internal macros
 
 %%%%%%%%%%%%%%%%%%%% USER MACROS %%%%%%%%%%%%%%%%%%%%
 
@@ -88,4 +88,4 @@
     \declaremathsnippet{#1}{#2}%
 }
 
-\makeatother % Revoke access to internal macros (Name contains an @).
+\makeatother % Revoke access to internal macros
