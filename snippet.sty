@@ -29,24 +29,16 @@
 }
 
 \NewDocumentCommand {\newmathsnippet} {m m} {%
-    \NewDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{\ensuremath{#2}}%
-    }%
+    \newsnippet{#1}{\ensuremath{#2}}%
 }
 \NewDocumentCommand {\renewmathsnippet} {m m} {%
-    \RenewDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{\ensuremath{#2}}%
-    }%
+    \renewsnippet{#1}{\ensuremath{#2}}%
 }
 \NewDocumentCommand {\providemathsnippet} {m m} {%
-    \ProvideDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{\ensuremath{#2}}%
-    }%
+    \providesnippet{#1}{\ensuremath{#2}}%
 }
 \NewDocumentCommand {\declaremathsnippet} {m m} {%
-    \DeclareDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{\ensuremath{#2}}%
-    }%
+    \declaresnippet{#1}{\ensuremath{#2}}%
 }
 
 %%%%%%%%%%%%%%%%%%%% INTERNAL MACROS %%%%%%%%%%%%%%%%%%%%
@@ -67,6 +59,7 @@
 \NewDocumentCommand {\ThrowStarRequired@spt} {m} {%
 \PackageError{\packageName@spt}{Use \detokenize{#1*} (whitespace optional) instead of \detokenize{#1}. The star variant is required outside math mode}{}%
 }
+
 \NewDocumentCommand {\ThrowDeprecated@spt} {m m} {%
 \PackageWarning{\packageName@spt}{Use \detokenize{#1} instead of \detokenize{#2}. The macro is deprecated}%
 }
