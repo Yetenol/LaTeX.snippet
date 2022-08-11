@@ -60,7 +60,7 @@
 \PackageError{\packageName@spt}{Use \detokenize{#1*} (whitespace optional) instead of \detokenize{#1}. The star variant is required outside math mode}{}%
 }
 
-\NewDocumentCommand {\ThrowDeprecated@spt} {m m} {%
+\NewDocumentCommand {\WarnDeprecated@spt} {m m} {%
 \PackageWarning{\packageName@spt}{Use \detokenize{#1} instead of \detokenize{#2}. The macro is deprecated}%
 }
 
@@ -71,19 +71,19 @@
 %%%%%%%%%%%%%%%%%%%% DEPRECATED MACROS %%%%%%%%%%%%%%%%%%%%
 
 \ProvideDocumentCommand {\newmathsymbol} {m m} {%
-    \ThrowDeprecated@spt{\newmathsnippet}{\newmathsymbol}%
+    \WarnDeprecated@spt{\newmathsnippet}{\newmathsymbol}%
     \newmathsnippet{#1}{#2}%
 }
 \ProvideDocumentCommand {\renewmathsymbol} {m m} {%
-    \ThrowDeprecated@spt{\renewmathsnippet}{\renewmathsymbol}%
+    \WarnDeprecated@spt{\renewmathsnippet}{\renewmathsymbol}%
     \renewmathsnippet{#1}{#2}%
 }
 \ProvideDocumentCommand {\providemathsymbol} {m m} {%
-    \ThrowDeprecated@spt{\providemathsnippet}{\providemathsymbol}%
+    \WarnDeprecated@spt{\providemathsnippet}{\providemathsymbol}%
     \providemathsnippet{#1}{#2}%
 }
 \ProvideDocumentCommand {\declaremathsymbol} {m m} {%
-    \ThrowDeprecated@spt{\declaremathsnippet}{\declaremathsymbol}%
+    \WarnDeprecated@spt{\declaremathsnippet}{\declaremathsymbol}%
     \declaremathsnippet{#1}{#2}%
 }
 
