@@ -6,7 +6,7 @@
 
 - **[User manual ›](manual.md)**  
 - **[Code documentation ›](documentation.md)**  
-- **[Source code](snippet.sty)**
+- **[Source code ›](snippet.sty)**
 - [Installation](#installation)
 - [Usage](#usage)
 - [Package information](#package-information)
