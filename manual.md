@@ -50,14 +50,14 @@ Variations
 - **declaresnippet**  
     Will always create and override the snippet, irrespective of any previous definitions.  
     This should be used sparingly!  
-    `\declaremathsymbol{\⟨macro name⟩}{⟨text⟩}`  
+    `\declaresnippet{\⟨macro name⟩}{⟨text⟩}`  
 
 
 ## Store a mathematical expression as a snippet
 Create an immutable mathematical expression block, called a math snippet, to make sure that all its appearances are identical.
 
 ```latex
-\newmathsymbol{\⟨macro name⟩}{⟨math expression⟩}
+\newmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
 ```
 - **⟨macro name⟩**: name of the mathematical symbol or variable
 - **⟨math expression⟩**: mathematical term that is displayed
@@ -66,8 +66,8 @@ Create an immutable mathematical expression block, called a math snippet, to mak
 Examples
 - Definition in the preample
     ```latex
-    \newmathsymbol{\Rmax}{R_\mathrm{max}}
-    \newmathsymbol{\bfg}{\left|\underline{H}\right|_\mathrm{dB}} % Betragsfrequenzgang
+    \newmathsnippet{\Rmax}{R_\mathrm{max}}
+    \newmathsnippet{\bfg}{\left|\underline{H}\right|_\mathrm{dB}} % Betragsfrequenzgang
     ```
 - Usage in the document
     ```latex
@@ -76,22 +76,22 @@ Examples
     ```
 
 Variations
-- **newmathsymbol**  
+- **newmathsnippet**  
     Create a new math snippet. **Recommended**
     ```latex
-    \newmathsymbol{\⟨macro name⟩}{⟨math expression⟩}
+    \newmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
     ```
-- **renewmathsymbol**  
+- **renewmathsnippet**  
     Explicitly replace an existing macro.
     ```latex
-    \renewmathsymbol{\⟨macro name⟩}{⟨math expression⟩}
+    \renewmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
     ```
-- **providemathsymbol**  
+- **providemathsnippet**  
     Only creates the math snippet if no macro with the same name exists. Never overrides.
     ```latex
-    \providemathsymbol{\⟨macro name⟩}{⟨math expression⟩}
+    \providemathsnippet{\⟨macro name⟩}{⟨math expression⟩}
     ```
-- **declaremathsymbol**  
+- **declaremathsnippet**  
     Will always create and override the math snippet, irrespective of any previous definitions.  
     This should be used sparingly!  
-    `\declaremathsymbol{\⟨macro name⟩}{⟨math expression⟩}`  
+    `\declaremathsnippet{\⟨macro name⟩}{⟨math expression⟩}`  
