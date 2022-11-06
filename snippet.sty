@@ -3,6 +3,7 @@
 % see documentation at https://github.com/Yetenol/LaTeX.snippet/
 
 \RequirePackage{xparse}
+\RequirePackage{etoolbox}
 
 \makeatletter % Grant access to internal macros
 
@@ -58,11 +59,18 @@
 }
 
 \NewDocumentCommand {\ThrowStarRequired@spt} {m} {%
-\PackageError{\packageName@spt}{Use \detokenize{#1*} (whitespace optional) instead of \detokenize{#1}. The star variant is required outside math mode}{}%
+    \PackageError{\packageName@spt}{Use \detokenize{#1*} (whitespace optional) instead of \detokenize{#1}. The star variant is required outside math mode}{}%
 }
 
 \NewDocumentCommand {\WarnDeprecated@spt} {m m} {%
-\PackageWarning{\packageName@spt}{Use \detokenize{#1} instead of \detokenize{#2}. The macro is deprecated}%
+    \PackageWarning{\packageName@spt}{Use \detokenize{#1} instead of \detokenize{#2}. The macro is deprecated}%
+}
+
+\NewDocumentCommand {\LinkDeprecatedMacro@spt} {m m} {%
+    \ProvideDocumentCommand {#2} {m m} {%
+        \WarnDeprecated@spt{\newexpression}{\newmathsymbol}%
+        #1{##1}{##2}
+    }
 }
 
 %%%%%%%%%%%%%%%%%%%% INTERNAL VARIABLES %%%%%%%%%%%%%%%%%%%%
@@ -71,21 +79,13 @@
 
 %%%%%%%%%%%%%%%%%%%% DEPRECATED MACROS %%%%%%%%%%%%%%%%%%%%
 
-\ProvideDocumentCommand {\newmathsymbol} {m m} {%
-    \WarnDeprecated@spt{\newexpression}{\newmathsymbol}%
-    \newexpression{#1}{#2}%
-}
-\ProvideDocumentCommand {\renewmathsymbol} {m m} {%
-    \WarnDeprecated@spt{\renewexpression}{\renewmathsymbol}%
-    \renewexpression{#1}{#2}%
-}
-\ProvideDocumentCommand {\providemathsymbol} {m m} {%
-    \WarnDeprecated@spt{\provideexpression}{\providemathsymbol}%
-    \provideexpression{#1}{#2}%
-}
-\ProvideDocumentCommand {\declaremathsymbol} {m m} {%
-    \WarnDeprecated@spt{\declareexpression}{\declaremathsymbol}%
-    \declareexpression{#1}{#2}%
-}
+\LinkDeprecatedMacro@spt{\newexpression}{\newmathsymbol}
+\LinkDeprecatedMacro@spt{\newexpression}{\newmathsnippet}
+\LinkDeprecatedMacro@spt{\renewexpression}{\renewmathsymbol}
+\LinkDeprecatedMacro@spt{\renewexpression}{\renewmathsnippet}
+\LinkDeprecatedMacro@spt{\provideexpression}{\providemathsymbol}
+\LinkDeprecatedMacro@spt{\provideexpression}{\providemathsnippet}
+\LinkDeprecatedMacro@spt{\declareexpression}{\declaremathsymbol}
+\LinkDeprecatedMacro@spt{\declareexpression}{\declaremathsnippet}
 
 \makeatother % Revoke access to internal macros

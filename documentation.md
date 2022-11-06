@@ -130,7 +130,7 @@ Implementation
 
 # Deprecated macros
 
-- `\newmathsymbol` → `\newexpression`
-- `\renewmathsymbol` → `\renewexpression`
-- `\providemathsymbol` → `\provideexpression`
-- `\declaremathsymbol` → `\declareexpression`
+- `\newexpression` is used for `\newmathsymbol` or `\newmathsnippet`
+- `\renewexpression` is used for `\renewmathsymbol` or `\renewmathsnippet`
+- `\provideexpression` is used for `\providemathsymbol` or `\providemathsnippet`
+- `\declareexpression` is used for `\declaremathsymbol` or `\declaremathsnippet`
