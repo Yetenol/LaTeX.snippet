@@ -2,7 +2,7 @@
 
 [⌂](README.md) Home
 
-> Create text blocks or blocks of mathematical expressions, called snippets, to insert them later in different places.
+> Define phrases or expressions to insert them later in different places. This ensures that all appearances are identical.
 
 - **[User manual ›](manual.md)**  
 - **[Code documentation ›](documentation.md)**  
@@ -14,15 +14,13 @@
 ## Installation
 
 - add file **from External URL**  
-    Create a `./sty` subfolder and add the external file `snippet.sty` using the following url.  
-    
-    Example: This is supported in Overleaf.
+    Create a `./sty` subfolder and add the external file `snippet.sty` using the following url. _Overleaf_ for instance supports this.
     ```
     https://raw.githubusercontent.com/Yetenol/LaTeX.snippet/main/snippet.sty
     ```
 
 - add file **manually**  
-    Create a `./sty` subfolder and add the file [`snippet.sty`](https://raw.githubusercontent.com/Yetenol/LaTeX.snippet/main/snippet.sty)
+    Create a `./sty` subfolder and add the file [`snippet.sty`](snippet.sty)
 
 ## Usage
 

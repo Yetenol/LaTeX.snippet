@@ -3,18 +3,20 @@
 [⌂](README.md) ›
 
 Table of Contents
+- [Dependencies](#dependencies)
 - [Naming convention](#naming-convention)
 - [User macros](#user-macros)
-  - [new snippet](#new-snippet)
-  - [renew snippet](#renew-snippet)
-  - [provide snippet](#provide-snippet)
-  - [declare snippet](#declare-snippet)
-  - [new math snippet](#new-math-snippet)
-  - [renew math snippet](#renew-math-snippet)
-  - [provide math snippet](#provide-math-snippet)
-  - [declare math snippet](#declare-math-snippet)
+  - [new phrase](#new-phrase)
+  - [renew phrase](#renew-phrase)
+  - [provide phrase](#provide-phrase)
+  - [declare phrase](#declare-phrase)
+  - [new expression](#new-expression)
+  - [renew expression](#renew-expression)
+  - [provide expression](#provide-expression)
+  - [declare expression](#declare-expression)
 - [Internal macros](#internal-macros)
-  - [Render Snippet](#render-snippet)
+  - [Render Phrase](#render-phrase)
+  - [Link Deprecated Macro](#link-deprecated-macro)
   - [Throw Star Required](#throw-star-required)
   - [Warn Deprecated](#warn-deprecated)
 - [Internal constants](#internal-constants)
@@ -22,9 +24,9 @@ Table of Contents
 - [Deprecated macros](#deprecated-macros)
 
 # Dependencies
-| Package | Usage                                                       | Used macros           |
-| ------- | ----------------------------------------------------------- | --------------------- |
-| xparse  | create macros with stars, optionals and mandatory arguments | `\NewDocumentCommand` |
+| Package | Usage                                                      | Used macros           |
+| ------- | ---------------------------------------------------------- | --------------------- |
+| xparse  | create macros with stars, optional and mandatory arguments | `\NewDocumentCommand` |
 
 # Naming convention
 
@@ -38,81 +40,92 @@ Table of Contents
 # User macros
 User macros are accessible everywhere within the project.
 
-## new snippet
+## new phrase
 ```latex
-\newsnippet{\⟨macro name⟩}{⟨text⟩}
+\newphrase{\⟨macro name⟩}{⟨text⟩}
 ```
-- Create a custom snippet to use math expressions repeatedly
-- **@param** #1 ⟨macro name⟩: name of the mathematical macro or variable
-- **@param** #2 ⟨math expression⟩: mathematical term that is printed
+- Create a macro to use text repeatedly
+- **@param** #1 ⟨macro name⟩: name of the macro to be created
+- **@param** #2 ⟨text⟩: words to be printed
 - **@throws** ERROR if ⟨macro name⟩ has already been defined
 
-## renew snippet
+## renew phrase
 ```latex
-\renewsnippet{\⟨macro name⟩}{⟨text⟩}
+\renewphrase{\⟨macro name⟩}{⟨text⟩}
 ```
-- Analog to `\newsnippet`, but explicitly replaces an existing macro.
+- Analog to `\newphrase`, but explicitly replaces an existing macro.
 - **@throws** ERROR if ⟨macro name⟩ has not previously been defined
 
-## provide snippet
+## provide phrase
 ```latex
-\providesnippet{\⟨macro name⟩}{⟨text⟩}
+\providephrase{\⟨macro name⟩}{⟨text⟩}
 ```
-- Analog to `\newsnippet`, but only creates the macro if it has not been defined yet. Never overrides.
+- Analog to `\newphrase`, but only creates the macro if it has not been defined yet. Never overrides.
 
-## declare snippet
-`\declaresnippet{\⟨macro name⟩}{⟨text⟩}`
-- Analog to `\newsnippet`, but will always create the new definition, irrespective of any existing ⟨macro name⟩ with the same name
+## declare phrase
+`\declarephrase{\⟨macro name⟩}{⟨text⟩}`
+- Analog to `\newphrase`, but will always create the new definition, irrespective of any existing ⟨macro name⟩ with the same name
 - this should be used sparingly
 
 
-## new math snippet
+## new expression
 ```latex
-\newexpression{\⟨macro name⟩}{⟨math expression⟩}
+\newexpression{\⟨macro name⟩}{⟨math content⟩}
 ```
-- Create a custom snippet to use math expressions repeatedly
-- **@param** #1 ⟨macro name⟩: name of the mathematical macro or variable
-- **@param** #2 ⟨math expression⟩: mathematical term that is printed
+- Create a macro to use math expressions repeatedly
+- **@param** #1 ⟨macro name⟩: name of macro to be created
+- **@param** #2 ⟨math content⟩: mathematical term to be printed
 - **@throws** ERROR if ⟨macro name⟩ has already been defined
 
 Implementation
-- Ensures math mode for ⟨math expression⟩
-- Calls `\newsnippet` 
+- Ensures math mode for ⟨math content⟩
+- Calls `\newphrase` 
 
 
-## renew math snippet
+## renew expression
 ```latex
-\renewexpression{\⟨macro name⟩}{⟨math expression⟩}
+\renewexpression{\⟨macro name⟩}{⟨math content⟩}
 ```
 - Analog to `\newexpression`, but explicitly replaces an existing macro.
 - **@throws** ERROR if ⟨macro name⟩ has not previously been defined
 
-## provide math snippet
+## provide expression
 ```latex
-\provideexpression{\⟨macro name⟩}{⟨math expression⟩}
+\provideexpression{\⟨macro name⟩}{⟨math content⟩}
 ```
 - Analog to `\newexpression`, but only creates the macro if it has not been defined yet. Never overrides.
 
-## declare math snippet
-`\declareexpression{\⟨macro name⟩}{⟨math expression⟩}`
+## declare expression
+`\declareexpression{\⟨macro name⟩}{⟨math content⟩}`
 - Analog to `\newexpression`, but will always create the new definition, irrespective of any existing ⟨macro name⟩ with the same name
 - this should be used sparingly
 
 # Internal macros
 
-## Render Snippet
+## Render Phrase
 ```latex
-\RenderSnippet@spt{⟨snippet macro⟩}⟨is starred⟩{⟨text or expression⟩}
+\RenderSnippet@spt{⟨content⟩}{⟨blame macro⟩}⟨is starred⟩
 ```
-- **@param** #1 ⟨snippet macro⟩: macro that could get detokenized for a warning
-- **@param** #2 ⟨is starred⟩: (boolean) is the starred versions of the snippet called?
-- **@param** #3 ⟨text or expression⟩: content to be rendered
+- **@param** #1 ⟨content⟩: content to be rendered
+- **@param** #2 ⟨blame macro⟩: macro used to create the phrase or expression
+- **@param** #3 ⟨is starred⟩: (boolean) is the star-variant of the blamed macro called?
+- **@throws** *Star required* if used in text mode with the non-star-variant.
+- displays the content of the phrase or expression
+
+## Link Deprecated Macro
+```latex
+\LinkDeprecatedMacro@spt{⟨correct macro⟩}{⟨deprecated macro⟩}
+```
+- **@param** #1 ⟨correct macro⟩: up-to-date macro name
+- **@param** #2 ⟨deprecated macro⟩: old macro name
+- **@warns** that the deprecated macro should be replaced
+- deprecated macros will call the up-to-date equivalents
 
 ## Throw Star Required
 ```latex
-\ThrowStarRequired@spt{⟨snippet macro⟩}
+\ThrowStarRequired@spt{⟨blame macro⟩}
 ```
-- **@param** #1 ⟨snippet macro⟩: macro blamed in warning prompt
+- **@param** #1 ⟨blame macro⟩: macro blamed in warning prompt
 
 ## Warn Deprecated
 ```latex

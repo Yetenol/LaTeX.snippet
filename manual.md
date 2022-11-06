@@ -3,65 +3,67 @@
 [⌂](README.md) ›
 
 Table of Contents
-- [Store a text block as a snippet](#store-a-text-block-as-a-snippet)
-- [Store a mathematical expression as a snippet](#store-a-mathematical-expression-as-a-snippet)
+- [Create a phrase of text](#create-a-phrase-of-text)
+- [Create an expression of mathematical content](#create-an-expression-of-mathematical-content)
 
-## Store a text block as a snippet
-Create an immutable text block, called a snippet, to make sure that all its appearances are identical.
+## Create a phrase of text
+Create an immutable phrase stored in a macro, to make sure that all its appearances throughout the document are identical.
 ```latex
-\newsnippet{\⟨macro name⟩}{⟨text⟩}
+\newphrase{\⟨macro name⟩}{⟨text⟩}
 ```
-- **⟨macro name⟩**: name of the text module
-- **⟨text⟩**: words displayed for each appearance
+- **⟨macro name⟩**: name of the phrase be created
+- **⟨text⟩**: words to be printed
 - throws ERROR if ⟨macro name⟩ has already been defined
+- prints the content using **text mode** (instead if math mode)
 
 Examples
 - Definition in the preample
     ```latex
-    \newsnippet{\collabs}{Max, Peter, Dan and Tom}
-    \newsnippet{\diffiable}{%
+    \newphrase{\staff}{Max, Peter, Dan and Tom}
+    \newphrase{\diffiable}{%
         The function is continuous partial diffiable, \\
         so it is diffiable.
     }
     ```
 - Usage in the document
     ```latex
-    Fortunately, \collabs* helped me finish the project.
+    Fortunately, \staff* helped me finish the project.
     
     $$ f(x)=e^x $$
     \diffiable*
     ```
 Variations
-- **newsnippet**  
-    Create a new snippet. **Recommended**
+- **newphrase**  
+    Define a new phrase. **Recommended**
     ```latex
-    \newsnippet{\⟨macro name⟩}{⟨text⟩}
+    \newphrase{\⟨macro name⟩}{⟨text⟩}
     ```
-- **renewsnippet**  
-    Explicitly replace an existing macro.
+- **renewphrase**  
+    Replace an existing macro with the phrase.
     ```latex
-    \renewsnippet{\⟨macro name⟩}{⟨text⟩}
+    \renewphrase{\⟨macro name⟩}{⟨text⟩}
     ```
-- **providesnippet**  
-    Only creates the snippet if no macro with the same name exists. Never overrides.
+- **providephrase**  
+    Ensure the availability of the macro. Define a new phrase unless a macro with the same name already exists. Never overrides.
     ```latex
-    \providesnippet{\⟨macro name⟩}{⟨text⟩}
+    \providephrase{\⟨macro name⟩}{⟨text⟩}
     ```
-- **declaresnippet**  
-    Will always create and override the snippet, irrespective of any previous definitions.  
+- **declarephrase**  
+    Force define a phrase, irrespective of any previous definitions.  
     This should be used sparingly!  
-    `\declaresnippet{\⟨macro name⟩}{⟨text⟩}`  
+    `\declarephrase{\⟨macro name⟩}{⟨text⟩}`  
 
 
-## Store a mathematical expression as a snippet
-Create an immutable mathematical expression block, called a math snippet, to make sure that all its appearances are identical.
+## Create an expression of mathematical content
+Create an immutable expression stored in a macro, to make sure that all its appearances throughout the document are identical.
 
 ```latex
-\newexpression{\⟨macro name⟩}{⟨math expression⟩}
+\newexpression{\⟨macro name⟩}{⟨math content⟩}
 ```
 - **⟨macro name⟩**: name of the mathematical symbol or variable
-- **⟨math expression⟩**: mathematical term that is displayed
+- **⟨math content⟩**: mathematical term that is displayed
 - throws ERROR if ⟨macro name⟩ has already been defined
+- prints the content using **math mode**
 
 Examples
 - Definition in the preample
@@ -77,21 +79,21 @@ Examples
 
 Variations
 - **newexpression**  
-    Create a new math snippet. **Recommended**
+    Define a new expression. **Recommended**
     ```latex
-    \newexpression{\⟨macro name⟩}{⟨math expression⟩}
+    \newexpression{\⟨macro name⟩}{⟨math content⟩}
     ```
 - **renewexpression**  
-    Explicitly replace an existing macro.
+    Replace an existing macro with the expression.
     ```latex
-    \renewexpression{\⟨macro name⟩}{⟨math expression⟩}
+    \renewexpression{\⟨macro name⟩}{⟨math content⟩}
     ```
 - **provideexpression**  
-    Only creates the math snippet if no macro with the same name exists. Never overrides.
+    Ensure the availability of the macro. Define a new expression unless a macro with the same name already exists. Never overrides.
     ```latex
-    \provideexpression{\⟨macro name⟩}{⟨math expression⟩}
+    \provideexpression{\⟨macro name⟩}{⟨math content⟩}
     ```
 - **declareexpression**  
-    Will always create and override the math snippet, irrespective of any previous definitions.  
+    Force define an expression, irrespective of any previous definitions.  
     This should be used sparingly!  
-    `\declareexpression{\⟨macro name⟩}{⟨math expression⟩}`  
+    `\declareexpression{\⟨macro name⟩}{⟨math content⟩}`  

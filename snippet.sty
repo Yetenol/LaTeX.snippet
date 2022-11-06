@@ -8,68 +8,69 @@
 
 %%%%%%%%%%%%%%%%%%%% USER MACROS %%%%%%%%%%%%%%%%%%%%
 
-\NewDocumentCommand {\newsnippet} {m +m} {%
+\NewDocumentCommand {\newphrase} {m +m} {%
     \NewDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{#2}%
+        \RenderPhrase@spt{#2}{#1}{##1}%
     }%
 }
-\NewDocumentCommand {\renewsnippet} {m +m} {%
+\NewDocumentCommand {\renewphrase} {m +m} {%
     \RenewDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{#2}%
+        \RenderPhrase@spt{#2}{#1}{##1}%
     }%
 }
-\NewDocumentCommand {\providesnippet} {m +m} {%
+\NewDocumentCommand {\providephrase} {m +m} {%
     \ProvideDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{#2}%
+        \RenderPhrase@spt{#2}{#1}{##1}%
     }%
 }
-\NewDocumentCommand {\declaresnippet} {m +m} {%
+\NewDocumentCommand {\declarephrase} {m +m} {%
     \DeclareDocumentCommand {#1} {s} {%
-        \RenderSnippet@spt{#1}{##1}{#2}%
+        \RenderPhrase@spt{#2}{#1}{##1}%
     }%
 }
 
 \NewDocumentCommand {\newexpression} {m m} {%
-    \newsnippet{#1}{\ensuremath{#2}}%
+    \newphrase{#1}{\ensuremath{#2}}%
 }
 \NewDocumentCommand {\renewexpression} {m m} {%
-    \renewsnippet{#1}{\ensuremath{#2}}%
+    \renewphrase{#1}{\ensuremath{#2}}%
 }
 \NewDocumentCommand {\provideexpression} {m m} {%
-    \providesnippet{#1}{\ensuremath{#2}}%
+    \providephrase{#1}{\ensuremath{#2}}%
 }
 \NewDocumentCommand {\declareexpression} {m m} {%
-    \declaresnippet{#1}{\ensuremath{#2}}%
+    \declarephrase{#1}{\ensuremath{#2}}%
 }
 
 %%%%%%%%%%%%%%%%%%%% INTERNAL MACROS %%%%%%%%%%%%%%%%%%%%
 
-\NewDocumentCommand {\RenderSnippet@spt} {m m m}
+\NewDocumentCommand {\RenderPhrase@spt} {m m m}
 {%
     \relax\ifmmode%
-        #3%
+        \text{#1}%
     \else%
-        \IfBooleanTF{#2}{%
-            #3%
+        \IfBooleanTF{#3}{%
+            #1%
         }{% else
-            \PackageError{snippet}{Use #1* (whitespace optional) instead of #1. The star variant is required outside math mode}{}%
+            #1%
+            \ThrowStarRequired@spt{#2}%
         }%
     \fi%
 }
 
+\NewDocumentCommand {\LinkDeprecatedMacro@spt} {m m} {%
+    \ProvideDocumentCommand {#2} {m m} {%
+        \WarnDeprecated@spt{#1}{#2}%
+        #1{##1}{##2}
+    }
+}
+
 \NewDocumentCommand {\ThrowStarRequired@spt} {m} {%
-    \PackageError{\packageName@spt}{Use \detokenize{#1*} (whitespace optional) instead of \detokenize{#1}. The star variant is required outside math mode}{}%
+    \PackageError{\packageName@spt}{Use #1* (whitespace optional) instead of #1. The star variant is required outside math mode}{}%
 }
 
 \NewDocumentCommand {\WarnDeprecated@spt} {m m} {%
     \PackageWarning{\packageName@spt}{Use \detokenize{#1} instead of \detokenize{#2}. The macro is deprecated}%
-}
-
-\NewDocumentCommand {\LinkDeprecatedMacro@spt} {m m} {%
-    \ProvideDocumentCommand {#2} {m m} {%
-        \WarnDeprecated@spt{\newexpression}{\newmathsymbol}%
-        #1{##1}{##2}
-    }
 }
 
 %%%%%%%%%%%%%%%%%%%% INTERNAL VARIABLES %%%%%%%%%%%%%%%%%%%%
@@ -77,6 +78,11 @@
 \newcommand {\packageName@spt} {snippet}
 
 %%%%%%%%%%%%%%%%%%%% DEPRECATED MACROS %%%%%%%%%%%%%%%%%%%%
+
+\LinkDeprecatedMacro@spt{\newphrase}{\newsnippet}
+\LinkDeprecatedMacro@spt{\renewphrase}{\renewsnippet}
+\LinkDeprecatedMacro@spt{\providephrase}{\providesnippet}
+\LinkDeprecatedMacro@spt{\declarephrase}{\declaresnippet}
 
 \LinkDeprecatedMacro@spt{\newexpression}{\newmathsymbol}
 \LinkDeprecatedMacro@spt{\newexpression}{\newmathsnippet}
