@@ -57,7 +57,7 @@ Variations
 Create an immutable mathematical expression block, called a math snippet, to make sure that all its appearances are identical.
 
 ```latex
-\newmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
+\newexpression{\⟨macro name⟩}{⟨math expression⟩}
 ```
 - **⟨macro name⟩**: name of the mathematical symbol or variable
 - **⟨math expression⟩**: mathematical term that is displayed
@@ -66,8 +66,8 @@ Create an immutable mathematical expression block, called a math snippet, to mak
 Examples
 - Definition in the preample
     ```latex
-    \newmathsnippet{\Rmax}{R_\mathrm{max}}
-    \newmathsnippet{\bfg}{\left|\underline{H}\right|_\mathrm{dB}} % Betragsfrequenzgang
+    \newexpression{\Rmax}{R_\mathrm{max}}
+    \newexpression{\bfg}{\left|\underline{H}\right|_\mathrm{dB}} % Betragsfrequenzgang
     ```
 - Usage in the document
     ```latex
@@ -76,22 +76,22 @@ Examples
     ```
 
 Variations
-- **newmathsnippet**  
+- **newexpression**  
     Create a new math snippet. **Recommended**
     ```latex
-    \newmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
+    \newexpression{\⟨macro name⟩}{⟨math expression⟩}
     ```
-- **renewmathsnippet**  
+- **renewexpression**  
     Explicitly replace an existing macro.
     ```latex
-    \renewmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
+    \renewexpression{\⟨macro name⟩}{⟨math expression⟩}
     ```
-- **providemathsnippet**  
+- **provideexpression**  
     Only creates the math snippet if no macro with the same name exists. Never overrides.
     ```latex
-    \providemathsnippet{\⟨macro name⟩}{⟨math expression⟩}
+    \provideexpression{\⟨macro name⟩}{⟨math expression⟩}
     ```
-- **declaremathsnippet**  
+- **declareexpression**  
     Will always create and override the math snippet, irrespective of any previous definitions.  
     This should be used sparingly!  
-    `\declaremathsnippet{\⟨macro name⟩}{⟨math expression⟩}`  
+    `\declareexpression{\⟨macro name⟩}{⟨math expression⟩}`  

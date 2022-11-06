@@ -68,7 +68,7 @@ User macros are accessible everywhere within the project.
 
 ## new math snippet
 ```latex
-\newmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
+\newexpression{\⟨macro name⟩}{⟨math expression⟩}
 ```
 - Create a custom snippet to use math expressions repeatedly
 - **@param** #1 ⟨macro name⟩: name of the mathematical macro or variable
@@ -82,20 +82,20 @@ Implementation
 
 ## renew math snippet
 ```latex
-\renewmathsnippet{\⟨macro name⟩}{⟨math expression⟩}
+\renewexpression{\⟨macro name⟩}{⟨math expression⟩}
 ```
-- Analog to `\newmathsnippet`, but explicitly replaces an existing macro.
+- Analog to `\newexpression`, but explicitly replaces an existing macro.
 - **@throws** ERROR if ⟨macro name⟩ has not previously been defined
 
 ## provide math snippet
 ```latex
-\providemathsnippet{\⟨macro name⟩}{⟨math expression⟩}
+\provideexpression{\⟨macro name⟩}{⟨math expression⟩}
 ```
-- Analog to `\newmathsnippet`, but only creates the macro if it has not been defined yet. Never overrides.
+- Analog to `\newexpression`, but only creates the macro if it has not been defined yet. Never overrides.
 
 ## declare math snippet
-`\declaremathsnippet{\⟨macro name⟩}{⟨math expression⟩}`
-- Analog to `\newmathsnippet`, but will always create the new definition, irrespective of any existing ⟨macro name⟩ with the same name
+`\declareexpression{\⟨macro name⟩}{⟨math expression⟩}`
+- Analog to `\newexpression`, but will always create the new definition, irrespective of any existing ⟨macro name⟩ with the same name
 - this should be used sparingly
 
 # Internal macros
@@ -130,7 +130,7 @@ Implementation
 
 # Deprecated macros
 
-- `\newmathsymbol` → `\newmathsnippet`
-- `\renewmathsymbol` → `\renewmathsnippet`
-- `\providemathsymbol` → `\providemathsnippet`
-- `\declaremathsymbol` → `\declaremathsnippet`
+- `\newmathsymbol` → `\newexpression`
+- `\renewmathsymbol` → `\renewexpression`
+- `\providemathsymbol` → `\provideexpression`
+- `\declaremathsymbol` → `\declareexpression`

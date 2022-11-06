@@ -29,16 +29,16 @@
     }%
 }
 
-\NewDocumentCommand {\newmathsnippet} {m m} {%
+\NewDocumentCommand {\newexpression} {m m} {%
     \newsnippet{#1}{\ensuremath{#2}}%
 }
-\NewDocumentCommand {\renewmathsnippet} {m m} {%
+\NewDocumentCommand {\renewexpression} {m m} {%
     \renewsnippet{#1}{\ensuremath{#2}}%
 }
-\NewDocumentCommand {\providemathsnippet} {m m} {%
+\NewDocumentCommand {\provideexpression} {m m} {%
     \providesnippet{#1}{\ensuremath{#2}}%
 }
-\NewDocumentCommand {\declaremathsnippet} {m m} {%
+\NewDocumentCommand {\declareexpression} {m m} {%
     \declaresnippet{#1}{\ensuremath{#2}}%
 }
 
@@ -72,20 +72,20 @@
 %%%%%%%%%%%%%%%%%%%% DEPRECATED MACROS %%%%%%%%%%%%%%%%%%%%
 
 \ProvideDocumentCommand {\newmathsymbol} {m m} {%
-    \WarnDeprecated@spt{\newmathsnippet}{\newmathsymbol}%
-    \newmathsnippet{#1}{#2}%
+    \WarnDeprecated@spt{\newexpression}{\newmathsymbol}%
+    \newexpression{#1}{#2}%
 }
 \ProvideDocumentCommand {\renewmathsymbol} {m m} {%
-    \WarnDeprecated@spt{\renewmathsnippet}{\renewmathsymbol}%
-    \renewmathsnippet{#1}{#2}%
+    \WarnDeprecated@spt{\renewexpression}{\renewmathsymbol}%
+    \renewexpression{#1}{#2}%
 }
 \ProvideDocumentCommand {\providemathsymbol} {m m} {%
-    \WarnDeprecated@spt{\providemathsnippet}{\providemathsymbol}%
-    \providemathsnippet{#1}{#2}%
+    \WarnDeprecated@spt{\provideexpression}{\providemathsymbol}%
+    \provideexpression{#1}{#2}%
 }
 \ProvideDocumentCommand {\declaremathsymbol} {m m} {%
-    \WarnDeprecated@spt{\declaremathsnippet}{\declaremathsymbol}%
-    \declaremathsnippet{#1}{#2}%
+    \WarnDeprecated@spt{\declareexpression}{\declaremathsymbol}%
+    \declareexpression{#1}{#2}%
 }
 
 \makeatother % Revoke access to internal macros
