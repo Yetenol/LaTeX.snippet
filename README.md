@@ -33,3 +33,4 @@ Add file **manually**
 
 - [listofsymbols](https://texdoc.org/serve/listofsymbols/0)
 - [nomencl](https://texdoc.org/serve/nomencl/0)
+- [Glossaries - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Glossaries)
