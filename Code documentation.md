@@ -1,28 +1,3 @@
-<h1> Code documentation </h1>
-
-[⌂](README.md) ›
-
-Table of Contents
-- [Dependencies](#dependencies)
-- [Naming convention](#naming-convention)
-- [User macros](#user-macros)
-  - [new phrase](#new-phrase)
-  - [renew phrase](#renew-phrase)
-  - [provide phrase](#provide-phrase)
-  - [declare phrase](#declare-phrase)
-  - [new expression](#new-expression)
-  - [renew expression](#renew-expression)
-  - [provide expression](#provide-expression)
-  - [declare expression](#declare-expression)
-- [Internal macros](#internal-macros)
-  - [Render Phrase](#render-phrase)
-  - [Link Deprecated Macro](#link-deprecated-macro)
-  - [Throw Star Required](#throw-star-required)
-  - [Warn Deprecated](#warn-deprecated)
-- [Internal constants](#internal-constants)
-  - [package Name](#package-name)
-- [Deprecated macros](#deprecated-macros)
-
 # Dependencies
 | Package | Usage                                                      | Used macros           |
 | ------- | ---------------------------------------------------------- | --------------------- |
@@ -30,17 +5,18 @@ Table of Contents
 
 # Naming convention
 
-- **User macros**  
-    `\⟨all lower case⟩`
-- **Internal macros**  
-    `\⟨Upper Camel Case⟩@⟨namespace⟩`
-- **Internal variables**  
-    `\⟨lower Camel Case⟩@⟨namespace⟩`
+| Macro type         | Naming convention                 | Example              |
+| ------------------ | --------------------------------- | -------------------- |
+| User marco         | `\⟨all lower case⟩`               | `\newphrase`         |
+| Internal macro     | `\⟨Upper Camel Case⟩@⟨namespace⟩` | `\RenderSnippet@spt` |
+| Internal variables | `\⟨lower Camel Case⟩@⟨namespace⟩` | `\packageName@spt`                     |
 
 # User macros
+
 User macros are accessible everywhere within the project.
 
 ## new phrase
+
 ```latex
 \newphrase{\⟨macro name⟩}{⟨text⟩}
 ```
@@ -50,6 +26,7 @@ User macros are accessible everywhere within the project.
 - **@throws** ERROR if ⟨macro name⟩ has already been defined
 
 ## renew phrase
+
 ```latex
 \renewphrase{\⟨macro name⟩}{⟨text⟩}
 ```
@@ -57,18 +34,20 @@ User macros are accessible everywhere within the project.
 - **@throws** ERROR if ⟨macro name⟩ has not previously been defined
 
 ## provide phrase
+
 ```latex
 \providephrase{\⟨macro name⟩}{⟨text⟩}
 ```
 - Analog to `\newphrase`, but only creates the macro if it has not been defined yet. Never overrides.
 
 ## declare phrase
+
 `\declarephrase{\⟨macro name⟩}{⟨text⟩}`
 - Analog to `\newphrase`, but will always create the new definition, irrespective of any existing ⟨macro name⟩ with the same name
 - this should be used sparingly
 
-
 ## new expression
+
 ```latex
 \newexpression{\⟨macro name⟩}{⟨math content⟩}
 ```
@@ -81,8 +60,8 @@ Implementation
 - Ensures math mode for ⟨math content⟩
 - Calls `\newphrase` 
 
-
 ## renew expression
+
 ```latex
 \renewexpression{\⟨macro name⟩}{⟨math content⟩}
 ```
@@ -90,12 +69,14 @@ Implementation
 - **@throws** ERROR if ⟨macro name⟩ has not previously been defined
 
 ## provide expression
+
 ```latex
 \provideexpression{\⟨macro name⟩}{⟨math content⟩}
 ```
 - Analog to `\newexpression`, but only creates the macro if it has not been defined yet. Never overrides.
 
 ## declare expression
+
 `\declareexpression{\⟨macro name⟩}{⟨math content⟩}`
 - Analog to `\newexpression`, but will always create the new definition, irrespective of any existing ⟨macro name⟩ with the same name
 - this should be used sparingly
@@ -103,6 +84,7 @@ Implementation
 # Internal macros
 
 ## Render Phrase
+
 ```latex
 \RenderSnippet@spt{⟨content⟩}{⟨blame macro⟩}⟨is starred⟩
 ```
@@ -113,6 +95,7 @@ Implementation
 - displays the content of the phrase or expression
 
 ## Link Deprecated Macro
+
 ```latex
 \LinkDeprecatedMacro@spt{⟨correct macro⟩}{⟨deprecated macro⟩}
 ```
@@ -122,12 +105,14 @@ Implementation
 - deprecated macros will call the up-to-date equivalents
 
 ## Throw Star Required
+
 ```latex
 \ThrowStarRequired@spt{⟨blame macro⟩}
 ```
 - **@param** #1 ⟨blame macro⟩: macro blamed in warning prompt
 
 ## Warn Deprecated
+
 ```latex
 \WarnDeprecated@spt{⟨correct macro⟩}{⟨deprecated macro⟩}
 ```
@@ -137,6 +122,7 @@ Implementation
 # Internal constants
 
 ## package Name
+
 ```latex
 \packageName@spt
 ```

@@ -1,35 +1,35 @@
-<h1> snippet - A LaTeX package to unify repeated text </h1>
+# snippet - A LaTeX package to unify repeated text
 
-[⌂](README.md) Home
+Define phrases or expressions to insert them later in different places. This ensures that all appearances are identical.
 
-> Define phrases or expressions to insert them later in different places. This ensures that all appearances are identical.
-
-- **[User manual ›](manual.md)**  
-- **[Code documentation ›](documentation.md)**  
-- **[Source code ›](snippet.sty)**
-- [Installation](#installation)
-- [Usage](#usage)
-- [Package information](#package-information)
+- [User manual](User%20manual.md)
+- [Code documentation](Code%20documentation.md)
+- [Source code](snippet.sty)
 
 ## Installation
 
-- add file **from External URL**  
-    Create a `./sty` subfolder and add the external file `snippet.sty` using the following url. _Overleaf_ for instance supports this.
-    ```
-    https://raw.githubusercontent.com/Yetenol/LaTeX.snippet/main/snippet.sty
-    ```
+Add file **from External URL**  
+- Create a `./sty` subfolder and add the external file `snippet.sty` using the following url. _Overleaf_ supports this as well.
+```
+https://raw.githubusercontent.com/Yetenol/LaTeX.snippet/main/snippet.sty
+```
 
-- add file **manually**  
-    Create a `./sty` subfolder and add the file [`snippet.sty`](snippet.sty)
+Add file **manually**  
+- Create a `./sty` subfolder and add the file [`snippet.sty`](snippet.sty)
 
 ## Usage
 
-- **Use package** in the preamble
-    ```latex
-    \usepackage{sty/snippet}
-    ```
+**Use package** in the preamble
+```latex
+\usepackage{sty/snippet}
+```
 
 ## Package information
 
 - TeX Format:        `LaTeX2e`
 - Required location: `./sty/snippet.sty`
+
+# Inspiration
+
+- [listofsymbols](https://texdoc.org/serve/listofsymbols/0)
+- [nomencl](https://texdoc.org/serve/nomencl/0)
